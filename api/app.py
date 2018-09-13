@@ -44,3 +44,25 @@ def orders():
         all_orders.append(new_order)
         return jsonify(new_order), 201
 
+@app.route('/api/v1/orders/<int:order_id>', methods=['GET', 'PUT'])
+def single_order(order_id):
+    #Getting a single order 
+    get_order = [order for order in all_orders if order['id'] == order_id]
+    if len(get_order) == 0:
+            return jsonify("no order with the given id, please try again"), 404 #not found
+    if request.method == 'GET':        
+        return jsonify(get_order[0]), 200
+    #Updating the status of an order
+    else:
+        input_order = request.get_json()
+        if 'completed' not in input_order:
+            return jsonify("please add a new status"), 400
+        #Check if status is of type boolean
+        if type(input_order["completed"]) is not bool:
+            return jsonify("please add a boolean value to change the status"), 400
+        #Check if order already completed    
+        if get_order[0]['completed'] and input_order['completed']==True:
+            return jsonify("order already completed"), 200
+        #update status of order
+        get_order[0]["completed"] = input_order["completed"]
+        return jsonify(get_order[0]), 200

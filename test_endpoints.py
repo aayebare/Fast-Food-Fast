@@ -71,6 +71,44 @@ class TestApiEndpoints(unittest.TestCase):
 		response = self.tester.post('/api/v1/orders', data=dummy_data, content_type = 'application/json')
 		self.assertEqual(response.status_code, 400)	
 		self.assertIn(b"No order made,please add order and try again", response.data)
+
+	def test_if_single_order_returned(self):
+		response = self.tester.get('/api/v1/orders/1')
+		self.assertEqual(response.status_code, 200)	
+
+	def test_for_error_if_order_id_not_in_all_orders(self):
+		response = self.tester.get('/api/v1/orders/8')
+		self.assertEqual(response.status_code, 404)	
+		self.assertIn(b"no order with the given id, please try again", response.data)
+
+	def test_for_error_if_type_status_not_boolean(self):
+		dummy_data = json.dumps(
+			{
+			"completed":" "
+			}
+		)	
+		response = self.tester.put('/api/v1/orders/1', data=dummy_data, content_type = 'application/json')
+		self.assertEqual(response.status_code, 400)	
+		self.assertIn(b"please add a boolean value to change the status", response.data)
+
+	def test_for_error_if_completed_not_in_input(self):
+		dummy_data = json.dumps(
+				{
+
+				}
+			)	
+		response = self.tester.put('/api/v1/orders/1', data=dummy_data, content_type = 'application/json')
+		self.assertEqual(response.status_code, 400)
+		self.assertIn(b"please add a new status", response.data)
+
+	def test_for_successful_update_of_status(self):
+		dummy_data = json.dumps(
+		{
+		"completed":True
+		}
+		)	
+		response = self.tester.put('/api/v1/orders/1', data=dummy_data, content_type = 'application/json')
+		self.assertEqual(response.status_code, 200)	
 	
 		
 if __name__ == "__main__":
