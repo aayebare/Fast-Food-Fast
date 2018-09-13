@@ -8,14 +8,14 @@ class TestApiEndpoints(unittest.TestCase):
 		self.tester = app.test_client(self)
 		#a typical order
 		self.data = json.dumps(
-				{
-                    "id":1,
-                    "content":"shuwarma",
-                    "price":100,
-                    'date': '12-9-18',
-					"completed":False
-                }
-				            )
+			{
+			"id":1,
+			"content":"shuwarma",
+			"price":100,
+			'date': '12-9-18',
+			"completed":False
+			}
+			)
 	def test_if_all_orders_returned(self):
 		response = self.tester.get('/api/v1/orders')
 		self.assertEqual(response.status_code, 200)
