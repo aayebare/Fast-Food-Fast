@@ -1,5 +1,5 @@
 # Fast-Food-Fast
-This is an online system where users can place orders on the available food
+This is an online system where users can place orders on the available food items
 
 It also has admin features where the administrators can;
 
@@ -7,7 +7,7 @@ It also has admin features where the administrators can;
   
   -add new items(fast food) to the list of available food
   
-Every user to the system has to create an account and login  
+Every user to the system has to create an account and login in order to access the system
 
 [![Build Status](https://travis-ci.org/m-asiimwe/Fast-Food-Fast.svg?branch=api)](https://travis-ci.org/m-asiimwe/Fast-Food-Fast)
 
