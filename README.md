@@ -9,7 +9,7 @@ It also has admin features where the administrators can;
   
 Every user to the system has to create an account and login in order to access the system
 
-[![Build Status](https://travis-ci.org/m-asiimwe/Fast-Food-Fast.svg?branch=api)](https://travis-ci.org/m-asiimwe/Fast-Food-Fast)
+[![Build Status](https://travis-ci.org/m-asiimwe/Fast-Food-Fast.svg?branch=api)](https://travis-ci.org/m-asiimwe/Fast-Food-Fast?branch=api)
 
 [![Coverage Status](https://coveralls.io/repos/github/m-asiimwe/Fast-Food-Fast/badge.svg?branch=api)](https://coveralls.io/github/m-asiimwe/Fast-Food-Fast?branch=api)
 
