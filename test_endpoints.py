@@ -20,6 +20,19 @@ class TestApiEndpoints(unittest.TestCase):
 	def test_if_all_orders_returned(self):
 		response = self.tester.get('/api/v1/orders')
 		self.assertEqual(response.status_code, 200)
+
+	def test_if_order_is_posted(self):
+		dummy_data = json.dumps(
+			{
+				"id":1,
+				"content":"Chicken",
+				"price":100,
+				'date': '5-6-8',
+				"completed":False
+				}
+			)
+		response = self.tester.post('/api/v1/orders', data=dummy_data, content_type = 'application/json')
+		self.assertEqual(response.status_code, 201)	 
 	
 	def test_for_error_returned_when_no_content_in_order(self):
 		dummy_data = json.dumps(
