@@ -6,13 +6,15 @@ body{
     padding-bottom: 0;
     font: 15px/1.5 Arial,sans-serif;
     color: #333333;   
+    background-image: url(../images/image-11.jpg);
 }
 h1, h2, h3, h4, h5, h6 {
   color: #444444;
 }
 .container{
 	width: 80%;
-	margin: auto;
+    margin: auto;
+    
 }
 input,textarea {
     display:block;
@@ -69,6 +71,7 @@ a{
     padding:20px; 
  }
 article{
+    background: #ffffff;
     width: 700px;
  	padding-bottom: 10px;
     margin-bottom: 10px;
@@ -109,8 +112,9 @@ a:hover{
     margin-bottom: 10px;
 }
 .content-section-1{
+   
     margin-right: 300px;
-    background: #ffffff;
+    background: #331d1d;
     padding: 10px 20px ;
     border: 1px solid #dddddd;
     border-radius: 3px;
@@ -130,3 +134,97 @@ a:hover{
   margin-right: 20px;
   margin-bottom: 16px;
   }
+
+.home-page{
+	background-image: url(../images/image-6.jpg);
+	text-align: center;
+
+}
+
+#container-1 {
+	width:100%;
+    margin: 0 auto;
+}
+
+.home-content h1 {
+	border-bottom: 2px solid rgb(173, 12, 12);
+	border-top:2px solid rgb(61, 13, 148);
+	color: rgb(34, 33, 33);
+	font-family: 'Lato', sans-serif;
+	font-size: 32px	;
+    
+
+    }
+.home-page p {
+	color: rgb(202, 177, 177);
+	font-family:  "Poppins",sans-serif;
+	font-size: 24px;
+	max-width: 1000px;
+	text-transform: uppercase;
+	line-height: 1.5em;
+	margin: 3em auto 3em auto;
+}
+
+.home-content{
+	background-color: #00000006;
+}
+.menu{
+	font:1em Georgia;
+	list-style: none;
+    padding: 0;
+    margin-right: 200px;
+    margin-left: 200px;
+	background-color: rgb(202, 177, 177);
+	/*border-bottom: 3px solid #000;*/
+	/*border-top:1px solid #ddd;*/
+	text-align: center;
+	font-family: Helvetica, Arial, sans-serif;
+}
+.menu li{
+	display:inline-block;
+	padding: 5px 15px 4px 15px;
+}
+.menu li a{
+	color: #333333;
+	text-decoration: none;
+	line-height: 3em;
+}
+.menu li a:hover {
+	color: #992211;
+}
+.menu li.selected{
+	background:#333333;
+}
+.menu li.selected a{
+	color:#fff;
+}
+.company-banner{
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 50px;
+    width: auto;
+    height: auto;
+    padding: 0;
+    background-image: url(../images/image-12.jpg);
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color:#333333;
+    width: 100px;
+    height: auto;
+    padding:10px; 
+}
+.dropdown:hover .dropdown-content {
+    display:block;
+}
+#drop #drop-2{
+    color: rgb(245, 240, 240);
+	font-family:  "Poppins",sans-serif;
+    font-size: 10px;
+
+}
