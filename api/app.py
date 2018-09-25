@@ -2,9 +2,7 @@ from flask import Flask, jsonify, request
 import json
 import datetime
 
-
 app = Flask(__name__)
-
 now = datetime.datetime.now()
 
 all_orders = [
@@ -14,7 +12,7 @@ all_orders = [
 			"price":100,
 			'date': '12-9-18',
 			"completed":False
-			}
+	}
 
             ]
 
@@ -55,7 +53,6 @@ def single_order(order_id):
             return jsonify({"Error":"no order with the given id, please try again"}), 404 #not found
     if request.method == 'GET':        
         return jsonify(get_order[0]), 200
-    
     else:
         '''Updating the status of an order'''
         input_order = request.get_json()
