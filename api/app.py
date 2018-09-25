@@ -9,29 +9,30 @@ now = datetime.datetime.now()
 
 all_orders = [
     {
-        "id":1,
-        "content":"Shuwarma",
-        "price":100,
-        "date":"12-9-18",
-        "completed":False
-        }
-    ]
+			"id":1,
+			"content":"shuwarma",
+			"price":100,
+			'date': '12-9-18',
+			"completed":False
+			}
+
+            ]
 
 @app.route('/api/v1/orders', methods=['GET', 'POST'])
 def orders():
-    #Getting all orders
+    '''Getting all orders'''
     if request.method == 'GET':
-        return jsonify(all_orders), 200
-    #Post an order    
+        return jsonify(all_orders), 200   
     else:
+        '''Post an order''' 
         post_order = request.get_json()
-        #Check for empty content field in order
+        ''''Check against empty content field in order'''
         if 'content' not in post_order or post_order['content'].strip()=="": 
-            return jsonify("No order made,please add order and try again"), 400 
-        #check for price in order    
+            return jsonify({"Error":"No order made,please add order and try again"}), 400 
+        '''check for price in order'''    
         if 'price' in post_order:
             if type(post_order['price']) is int or type(post_order['price']) is float:
-                #create new order and add it to all_orders
+                '''create new order and add it to all_orders'''
                 new_order = {
                     "id":len(all_orders)+1,
                     "content":post_order["content"],
@@ -42,31 +43,32 @@ def orders():
                 all_orders.append(new_order)
                 return jsonify(new_order), 201
             else:    
-                return jsonify ("please add a valid unit price"), 400  
+                return jsonify ({"Error":"please add a valid unit price"}), 400  
         else:
-            return jsonify("This order has no price, please verify the price and try again"), 400
+            return jsonify({"Error":"This order has no price, please verify the price and try again"}), 400
 
 @app.route('/api/v1/orders/<int:order_id>', methods=['GET', 'PUT'])
 def single_order(order_id):
-    #Getting a single order 
+    '''Getting a single order''' 
     get_order = [order for order in all_orders if order['id'] == order_id]
     if len(get_order) == 0:
-            return jsonify("no order with the given id, please try again"), 404 #not found
+            return jsonify({"Error":"no order with the given id, please try again"}), 404 #not found
     if request.method == 'GET':        
         return jsonify(get_order[0]), 200
-    #Updating the status of an order
+    
     else:
+        '''Updating the status of an order'''
         input_order = request.get_json()
         if 'completed' in input_order:
-            #Check if status is of type boolean
+            '''Check for boolean type status'''
             if type(input_order["completed"]) is bool:
-                #update status of order
+                ''''update status of order'''
                 get_order[0]["completed"] = input_order["completed"]
                 return jsonify(get_order[0]), 200
             else:  
-                return jsonify("please add a boolean value to change the status"), 400
+                return jsonify({"Error":"please add a boolean value to change the status"}), 400
         else:
-            return jsonify("please add a new status"), 400
+            return jsonify({"Error":"please add a new status"}), 400
          
         
         
