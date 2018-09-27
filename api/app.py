@@ -26,7 +26,7 @@ def orders():
         post_order = request.get_json()
         ''''Check against empty content field in order'''
         if 'content' not in post_order or post_order['content'].strip()=="": 
-            return jsonify({"Error":"No order made,please add order and try again"}), 400 
+            return jsonify({"message":"No order made,please add order and try again"}), 400 
         '''check for price in order'''    
         if 'price' in post_order:
             if type(post_order['price']) is int or type(post_order['price']) is float:
@@ -41,16 +41,16 @@ def orders():
                 all_orders.append(new_order)
                 return jsonify(new_order), 201
             else:    
-                return jsonify ({"Error":"please add a valid unit price"}), 400  
+                return jsonify ({"message":"please add a valid unit price"}), 400  
         else:
-            return jsonify({"Error":"This order has no price, please verify the price and try again"}), 400
+            return jsonify({"message":"This order has no price, please verify the price and try again"}), 400
 
 @app.route('/api/v1/orders/<int:order_id>', methods=['GET', 'PUT'])
 def single_order(order_id):
     '''Getting a single order''' 
     get_order = [order for order in all_orders if order['id'] == order_id]
     if len(get_order) == 0:
-            return jsonify({"Error":"no order with the given id, please try again"}), 404 #not found
+            return jsonify({"message":"no order with the given id, please try again"}), 404 #not found
     if request.method == 'GET':        
         return jsonify(get_order[0]), 200
     else:
@@ -63,10 +63,6 @@ def single_order(order_id):
                 get_order[0]["completed"] = input_order["completed"]
                 return jsonify(get_order[0]), 200
             else:  
-                return jsonify({"Error":"please add a boolean value to change the status"}), 400
+                return jsonify({"message":"please add a boolean value to change the status"}), 400
         else:
-            return jsonify({"Error":"please add a new status"}), 400
-         
-        
-        
-       
+            return jsonify({"message":"please add a new status"}), 400
