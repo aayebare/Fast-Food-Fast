@@ -21,21 +21,22 @@
 
 # Endpoints
 
-- Get all orders.
-- Get a specific order.
-- Place a new order.
-- pdate the status of an order.  
+- Get all orders | /api/v1/orders
+- Get a specific order | /api/v1/orders/<int:order_id>
+- Place a new order | /api/v1/orders
+- pdate the status of an order | /api/v1/orders/<int:order_id>
+
+# Prerequisites
+
+- You will need postman
+- Install python 3.6
+- Install and create a virtual environment
+- Install the requirements at "requirements.txt" in the created virtual environment
 
 # Getting Started
 
 - Clone the api branch to your computer with "git clone https://github.com/m-asiimwe/Fast-Food-Fast/tree/api
-- Run the run.py file to start your local server
-
-# Prerequisites
-- You will need postman
-- Install python 3.6
-- Install and create a virtual environment
-- Install the requirements at "requirements.txt"
+- Run the run.py file to start your local server with the command (python run.py) after installing the virtual environment
 
 # Running the tests
 
