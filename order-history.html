@@ -1,68 +1,30 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
-	<title></title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <title></title>
 </head>
+
 <body>
-	<div class="container">
-    	<header>
-        	<div class="head">
-            	<a href="place-order.html"><h2>Fast-Food-Fast | History</h2></a>
-        	</div>       
-    	</header>
-        <div class="content-section-1">   
+    <div class="container">
+        <header>
+            <div class="head">
+                <a href="place-order.html">
+                    <h2>Fast-Food-Fast | History</h2>
+                </a>
+            </div>
+        </header>
+        <div class="content-section-1">
             <div id="orders">
 
             </div>
-			
-            
-    	</div>   
-    </div>	
-    <script>
-    window.addEventListener('load', getOrderHistory);
-	var token = sessionStorage.getItem('Token');
-	//console.log(token)
-	function getOrderHistory(){
-		fetch('http://127.0.0.1:5000/api/v1/users/orders',{
-			headers:{'Authorization': 'Bearer '+ token,
-			credentials:'include'
-				}
-		}	
-			
-		)
-		.then((response)=> response.json())
-		
-		.then((data)=>{
-			
-			let output = '<div></div>';
-			
-			data.forEach((item)=>{
-				
-				output
-				+=`
-                <article>
-				<table>
-                    <p class="date">${item.date}</p> 
-					<tr>
-						<p>${item.content}</p>
-                        <p>Order status: ${item.status} </p>	  
-                    </tr>
-				</table>  
-            </article>
-				`	
-				//document.getElementById('menu_item').innerHTML=output
-				
-			});
-		
-			document.getElementById('orders').innerHTML=output
-			
-			//}
-		
-		})
-		
-	}
-    </script>
+
+
+        </div>
+    </div>
+
 </body>
+
 </html>
