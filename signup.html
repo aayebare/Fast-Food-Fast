@@ -30,6 +30,44 @@
             <button type="submit" class="button-1" id="button">signup</button>
         </form>
     </div>
+    <script>
+        document.getElementById('addUser').addEventListener("submit", addUser);
+    
+        function addUser(e) {
+            e.preventDefault();
+            let user_name = document.getElementById('username').value;
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            let confirm_password = document.getElementById('confirm-password').value;
+            let is_admin = false
+    
+            fetch('http://127.0.0.1:5000/api/v1/auth/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: user_name,
+                        email: email,
+                        password: password,
+                        confirm_password: confirm_password,
+                        is_admin: is_admin
+                    })
+    
+                })
+                .then(response => {
+                    if (response.status == 201) {
+                        window.location = 'user-login.html'
+                        alert('You have successfully registered, please login')
+                    } else {
+                        alert('Please fill all the fields')
+                    }
+                })
+    
+            .catch((err) => console.log(err))
+        }
+</script>
 </body>
 
 </html>
