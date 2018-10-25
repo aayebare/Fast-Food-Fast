@@ -24,6 +24,44 @@
 
         </div>
     </div>
+    <script>
+        window.addEventListener('load', getOrderHistory);
+        var token = sessionStorage.getItem('Token');
+        function getOrderHistory() {
+            fetch('http://127.0.0.1:5000/api/v1/users/orders', {
+                        headers: {
+                            'Authorization': 'Bearer ' + token,
+                            credentials: 'include'
+                        }
+                    }
+    
+                )
+                .then((response) => response.json())
+    
+            .then((data) => {
+    
+                let output = '<div></div>';
+    
+                data.forEach((item) => {
+    
+                    output
+                        += `
+                    <article>
+                    <table>
+                        <p class="date">${item.date}</p> 
+                        <tr>
+                            <p>${item.content}</p>
+                            <p>Order status: ${item.status} </p>	  
+                        </tr>
+                    </table>  
+                </article>
+                    `
+                });
+    
+                document.getElementById('orders').innerHTML = output
+            })
+        }
+    </script>
 
 </body>
 
