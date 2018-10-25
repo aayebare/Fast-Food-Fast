@@ -13,70 +13,115 @@
         	</div>       
         </header>
         <div class="content-section">
-                <a href="admin-edit-items.html">View available fast food?</a>
+			<div>
+				<a href="admin-edit-items.html">View available fast food?</a>
+			</div>
+				<a href="admin-item.html">Add new food item?</a>
 		</div> 
         <div class="content-section-1">   
-			<article>
+            <div id="items">
+
+            </div>
+			
+    	</div>   
+    </div>
+    <script>
+    window.addEventListener('load', getOrders);
+	var token = sessionStorage.getItem('Token');
+	console.log(token)
+	function getOrders(){
+		fetch('http://127.0.0.1:5000/api/v1/orders',{
+			headers:{'Authorization': 'Bearer '+ token,
+			credentials:'include'
+				}
+		}	
+			
+		)
+		.then((response)=> response.json())
+		
+		.then((data)=>{
+			
+			let output = '<div></div>';
+			
+			data.forEach((item)=>{
+				
+				output
+				+=`
+
+				<article>
 				<table>
-                    <button type="submit" class="button-2"><a href="admin-mark-orders.html">Accept</a></button>
-                    <button type="submit" class="button-3"><a href="#">Decline</a></button>
+                    <p class="date">
+                    <select id="select_id">
+                        <option value="new" id="new"> New</option>
+                        <option value="processing" id="processing"> processing</option>
+                        <option value="cancelled" id="cancelled"> cancelled</option>
+                        <option value="complete" id="complete"> complete</option>
+                    </select>
+                   
+            <button type="submit" class="button-1" onClick="editStatus(${item.order_id})">Edit status</button>  
+                 </p> 
 					<tr>
-						<p>Lorem ipsum dolor sit amet</p>
-                        <p>Price: 0 UGX </p>	   
+						<p>${item.date}</p>
+                        <p>${item.content}</p>
+                        <p>order status: ${item.status} </p>	   
                     </tr>
 				</table>  
-			</article>
-			<article>
-                <table>
-                    <button type="submit" class="button-2"><a href="admin-mark-orders.html">Accept</a></button>
-                    <button type="submit" class="button-3"><a href="#">Decline</a></button>
-                    <tr>
-                        <p>Lorem ipsum dolor sit amet</p>
-                        <p>Price: 0 UGX </p>	   
-                    </tr>
-                </table>  
-            </article>
-            <article>
-                <table>
-                    <button type="submit" class="button-2"><a href="admin-mark-orders.html">Accept</a></button>
-                    <button type="submit" class="button-3"><a href="#">Decline</a></button>
-                    <tr>
-                        <p>Lorem ipsum dolor sit amet</p>
-                        <p>Price: 0 UGX </p>	 
-                    </tr>
-                </table>  
-            </article>
-            <article>
-                <table>
-                    <button type="submit" class="button-2"><a href="admin-mark-orders.html">Accept</a></button>
-                    <button type="submit" class="button-3"><a href="#">Decline</a></button>
-                    <tr>
-                        <p>Lorem ipsum dolor sit amet</p>
-                        <p>Price: 0 UGX </p>	   
-                    </tr>
-                </table>  
-            </article>
-            <article>
-                <table>
-                    <button type="submit" class="button-2"><a href="admin-mark-orders.html">Accept</a></button>
-                    <button type="submit" class="button-3"><a href="#">Decline</a></button>
-                    <tr>
-                        <p>Lorem ipsum dolor sit amet</p>
-                        <p>Price: 0 UGX </p>	     
-                    </tr>
-                </table>  
-            </article>
-            <article>
-                <table>
-                    <button type="submit" class="button-2"><a href="admin-mark-orders.html">Accept</a></button>
-                    <button type="submit" class="button-3"><a href="#">Decline</a></button>
-                    <tr>
-                        <p>Lorem ipsum dolor sit amet</p>
-                        <p>Price: 0 UGX </p>	  
-                    </tr>
-                </table>  
-            </article>
-    	</div>   
-    </div>	
+			    </article>
+				`	
+				//document.getElementById('menu_item').innerHTML=output
+				
+			});
+		
+			document.getElementById('items').innerHTML=output
+			
+			//}
+		
+		})
+		
+	}
+
+   /* function editStatus(order_id) {
+        let select_id = "select_" + order_id
+        select_element = document.getElementById(select_id)
+
+        // get selected value
+        status = "completed"
+        fetch
+
+    }*/
+	function editStatus(order_id) {
+		console.log(order_id)
+        let select_id = "select_" + order_id
+		console.log(select_id)
+		
+
+        select_element = document.getElementById('select_id').value;
+
+
+
+		console.log(select_element)
+		//let order_status = select_element.value;
+		/*let status_new = document.getElementById('new');
+        let status_processing = document.getElementById('processing');
+        let status_cancelled = document.getElementById('cancelled');
+        let status_complete = document.getElementById('complete');*/
+		let id = order_id;
+		let url  = 'http://127.0.0.1:5000/api/v1/​​orders​/s'+ id
+		fetch(url,{
+                method:'PUT',
+                headers:{'Accept':'application/json, text/plain, */*',
+                    'Content-type':'application/json',
+					'Authorization': 'Bearer '+ token,
+			credentials:'include'},
+                body:JSON.stringify({order_status:select_element})   
+            })
+			.then((res)=>res.json())
+			.then((data)=>{
+				console.log(data)
+			})
+
+        // get selected value
+	}
+    </script>	
 </body>
 </html>

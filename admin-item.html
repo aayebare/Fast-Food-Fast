@@ -8,18 +8,48 @@
     </head>
     <body>
         <div class="container">
-            <form>
+            <form id="addItem">
                 <a href="admin-edit-items.html"><h1>Fast Food Item</h1></a>
                 <p>Add or Edit Item</p>
                 <hr>
                     <label for="title"><b>Fast Food </b></label>
-                    <input type="text" placeholder="Enter Fast Food">
+                    <input type="text" id="title" placeholder="Enter Fast Food">
                     <label for="description"><b>Description</b></label>
-                    <input type="text" placeholder="Add Description">
+                    <input type="text" id="detail" placeholder="Add Description">
                     <label for="price"><b>Price</b></label>
-                    <input type="text" placeholder="Add a Unit Price in UGX">         
+                    <input type="text" id="price" placeholder="Add a Unit Price in UGX">  
+            <button type="submit" class="button-1">Save</button>               
             </form>
-            <button type="submit" class="button-1"><a href="admin-edit-items.html">Save</a></button>
-        </div>    
+           
+        </div>  
+        <script>
+             document.getElementById('addItem').addEventListener( "submit", addItem);
+             var token = sessionStorage.getItem('Token')
+             function addItem(e){
+                 e.preventDefault();
+                let title = document.getElementById('title').value;
+                let detail = document.getElementById('detail').value;
+                let price = document.getElementById('price').value;
+                fetch('http://127.0.0.1:5000/api/v1/menu',{
+                    method:'POST',
+                    headers:{'Accept':'application/json, text/plain, */*',
+                    'Content-type':'application/json',
+                    'Authorization': 'Bearer '+ token,
+			        credentials:'include'
+                    },
+                    body:JSON.stringify({content:title,detail:detail,price:price})
+                })
+                .then((response)=>response.json())
+                .then((data)=>{
+                    if(data.message=='Admin previledges required to perform this function'){
+                        alert('Only admin')
+                    }
+                }
+                   
+                )
+              
+             }
+
+        </script>  
     </body>
 </html>

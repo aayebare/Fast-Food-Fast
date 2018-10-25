@@ -16,57 +16,73 @@
             <button type="submit" class="button-1"><a href="admin-item.html">Add Fast Food</a></button>
 		</div> 
         <div class="content-section-1">   
-			<article>
-				<table>
-                    <button type="submit" class="button-2"><a href="admin-item.html">Edit</a></button>
-                    <button type="submit" class="button-3"><a href=#>Delete</a></button>
-					<tr>
-						<p>Lorem ipsum dolor sit amet</p>
-                        <p>Price: 0 UGX </p>	 
-                    </tr>
-				</table>  
-			</article>
-			<article>
-                <table>
-                    <button type="submit" class="button-2"><a href="admin-item.html">Edit</a></button>
-                    <button type="submit" class="button-3"><a href=#>Delete</a></button>
-                    <tr>
-                        <p>Lorem ipsum dolor sit amet</p>
-                        <p>Price: 0 UGX </p>	
-                    </tr>
-                </table>  
-            </article>
-            <article>
-                <table>
-                    <button type="submit" class="button-2"><a href="admin-item.html">Edit</a></button>
-                    <button type="submit" class="button-3"><a href=#>Delete</a></button>
-                    <tr>
-                        <p>Lorem ipsum dolor sit amet</p>
-                        <p>Price: 0 UGX </p>	 
-                    </tr>
-                </table>  
-            </article>
-            <article>
-                <table>
-                    <button type="submit" class="button-2"><a href="admin-item.html">Edit</a></button>
-                    <button type="submit" class="button-3"><a href=#>Delete</a></button>
-                    <tr>
-                        <p>Lorem ipsum dolor sit amet</p>
-                        <p>Price: 0 UGX </p>	 
-                    </tr>
-                </table>  
-            </article>
-            <article>
-                <table>
-                    <button type="submit" class="button-2"><a href="admin-item.html">Edit</a></button>
-                    <button type="submit" class="button-3"><a href=#>Delete</a></button>
-                    <tr>
-                        <p>Lorem ipsum dolor sit amet</p>
-                        <p>Price: 0 UGX </p>	
-                    </tr>
-                </table>  
-            </article>
+			<div id='items'>
+
+            </div>
+			
     	</div>   
     </div>	
+    <script>
+    window.addEventListener('load', getMenu);
+	var token = sessionStorage.getItem('Token');
+	function getMenu(){
+		fetch('http://127.0.0.1:5000/api/v1/menu',{
+			headers:{'Authorization': 'Bearer '+ token,
+			credentials:'include'
+				}
+		}	
+			
+		)
+		.then((response)=> response.json())
+		
+		.then((data)=>{
+			
+			let output = '<div></div>';
+			
+			data.forEach((item)=>{
+				
+				output
+				+=`
+
+				<article>
+				<table>
+                    <button type="submit" class="button-2"><a href="admin-item.html">Edit</a></button>
+                    <button type="submit" class="button-3" id ><a href=#>Delete</a></button>
+					<tr>
+						<p>${item.content}</p>
+                        <p>${item.detail} </p>
+                        <p>Price: ${item.price} UGX </p>	 
+                    </tr>
+				</table>  
+			    </article>
+				`	
+				//document.getElementById('menu_item').innerHTML=output
+				
+			});
+		
+			document.getElementById('items').innerHTML=output
+			
+			//}
+		
+		})
+		
+	}
+    function onOrder(item_id){
+		//let content = document.getElementById('').value;
+		
+		fetch('http://127.0.0.1:5000/api/v1/users/orders',{
+                method:'POST',
+                headers:{'Accept':'application/json, text/plain, */*',
+                    'Content-type':'application/json',
+                    'Authorization': 'Bearer '+ token,
+			        credentials:'include'},
+                body:JSON.stringify({item_id:item_id})   
+            })
+			.then((res)=>res.json())
+			.then((data)=>{
+				console.log(data)
+			})
+	}
+    </script>
 </body>
 </html>
