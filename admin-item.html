@@ -27,39 +27,47 @@
 
     </div>
     <script>
-        document.getElementById('addItem').addEventListener("submit", addItem);
+        document.getElementById('addItem').addEventListener( "submit", addItem);
         var token = sessionStorage.getItem('Token')
-    
-        function addItem(e) {
+        function addItem(e){
             e.preventDefault();
-            let title = document.getElementById('title').value;
-            let detail = document.getElementById('detail').value;
-            let price = document.getElementById('price').value;
-            fetch('http://127.0.0.1:5000/api/v1/menu', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json, text/plain, */*',
-                        'Content-type': 'application/json',
-                        'Authorization': 'Bearer ' + token,
-                        credentials: 'include'
-                    },
-                    body: JSON.stringify({
-                        content: title,
-                        detail: detail,
-                        price: price
-                    })
-                })
-                .then((response) => response.json())
-                .then((data) => {
-                        if (data.message == 'Admin previledges required to perform this function') {
-                            alert('Only admin')
-                        }
-                    }
-    
-                )
-    
+           let title = document.getElementById('title').value;
+           let detail = document.getElementById('detail').value;
+           let price = document.getElementById('price').value;
+           fetch('http://127.0.0.1:5000/api/v1/menu',{
+               method:'POST',
+               headers:{'Accept':'application/json, text/plain, */*',
+               'Content-type':'application/json',
+               'Authorization': 'Bearer '+ token,
+               credentials:'include'
+               },
+               body:JSON.stringify({content:title,detail:detail,price:price})
+           })
+           .then((response)=>response.json())
+           .then((data)=>{
+               console.log(data)
+               if(data.success=='Item successfully posted'){
+                   alert('Item successfully added to menu, continue')
+                   window.location='admin-item.html'
+               }
+               else if(data.message=='Admin previledges required to perform this function'){
+                   alert('Admin previledges required to perform this function')
+               }
+               
+               else if(data.message=='Please add content or detail or price fields'){
+                   alert('please fill all the fields to add food item')
+               }
+               else if(data.message=='Please add value in the content field'){
+                   alert('Please add value in the content field')
+               }
+               else if(data.message=='Please add a unit price'){
+                   alert('Please add a unit price to continue')
+               }
+           })
+           .catch((err) => console.log(err))
         }
-    </script>
+
+   </script>  
 
 </body>
 
