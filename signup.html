@@ -30,6 +30,69 @@
             <button type="submit" class="button-1" id="button">signup</button>
         </form>
     </div>
+    <script>
+        document.getElementById('addUser').addEventListener("submit", addUser);
+    
+        function addUser(e) {
+            e.preventDefault();
+            let user_name = document.getElementById('username').value;
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            let confirm_password = document.getElementById('confirm-password').value;
+            let is_admin = false
+    
+            fetch('http://127.0.0.1:5000/api/v1/auth/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: user_name,
+                        email: email,
+                        password: password,
+                        confirm_password: confirm_password,
+                        is_admin: is_admin
+                    })
+    
+                })
+                .then((response)=>response.json())
+                .then((data)=>{
+        
+                if(data.message=='registration was successful'){
+                    alert('You have successfully registered, please login')
+                    window.location='user-login.html'
+                }
+                else if(data.message=='please add password'){
+                    alert('Please, add pasword to continue')
+                }   
+                else if(data.message=='please add a username and/or email and try again'){
+                    alert('please add a username and/or email to continue')
+                }
+                else if(data.message=='please, add a username and try again'){
+                    alert('please, add a username to continue')
+                }
+                else if(data.message=='please, add a username and try again'){
+                    alert('please, add a username to continue')
+                }
+                else if(data.message=='please confirm-password'){
+                    alert('please confirm-password to continue')
+                }
+                else if(data.message=='passwords do not match, please try again!!'){
+                    alert('Passwords do not match, please add matching passwords to continue')
+                }
+                else if(data.message=='please fill in a valid email address'){
+                    alert('please fill in a valid email address to continue')
+                }
+                else if(data.message=='this email already exists, please use a different email to signup'){
+                    alert('The email used already has an account, please sign up with a different email or login')
+                }
+
+                })
+    
+            .catch((err) => console.log(err))
+        }
+</script>
 </body>
 
 </html>
