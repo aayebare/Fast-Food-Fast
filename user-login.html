@@ -48,12 +48,22 @@
                 if(data.message=='User successfully logged in as admin'){
                     alert('successully logged in, continue')
                     sessionStorage.setItem('Token', data.token);
-                    
                     window.location='admin-receive-order.html'
                     }
                 else if(data.message=='Incorrect email,please try again or signup!!'){
-                    alert('Incorrect email,please try again or signup!!')
+                    alert('email address is not registered, please use a registered email or signup')
                 }
+                else if(data.message=='please add an email in order to login'){
+                    alert('please add an email in order to login')
+                }
+                else if(data.message=='please add a password in order to login'){
+                    alert('please add a password in order to login')
+                }
+                else if(data.message=='Incorrect password, please try again'){
+                    alert('Incorrect password, please try again')
+                }
+
+                
             })
         }
     </script>
