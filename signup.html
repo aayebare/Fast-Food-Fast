@@ -56,13 +56,38 @@
                     })
     
                 })
-                .then(response => {
-                    if (response.status == 201) {
-                        window.location = 'user-login.html'
-                        alert('You have successfully registered, please login')
-                    } else {
-                        alert('Please fill all the fields')
-                    }
+                .then((response)=>response.json())
+                .then((data)=>{
+        
+                if(data.message=='registration was successful'){
+                    alert('You have successfully registered, please login')
+                    window.location='user-login.html'
+                }
+                else if(data.message=='please add password'){
+                    alert('Please, add pasword to continue')
+                }   
+                else if(data.message=='please add a username and/or email and try again'){
+                    alert('please add a username and/or email to continue')
+                }
+                else if(data.message=='please, add a username and try again'){
+                    alert('please, add a username to continue')
+                }
+                else if(data.message=='please, add a username and try again'){
+                    alert('please, add a username to continue')
+                }
+                else if(data.message=='please confirm-password'){
+                    alert('please confirm-password to continue')
+                }
+                else if(data.message=='passwords do not match, please try again!!'){
+                    alert('Passwords do not match, please add matching passwords to continue')
+                }
+                else if(data.message=='please fill in a valid email address'){
+                    alert('please fill in a valid email address to continue')
+                }
+                else if(data.message=='this email already exists, please use a different email to signup'){
+                    alert('The email used already has an account, please sign up with a different email or login')
+                }
+
                 })
     
             .catch((err) => console.log(err))
