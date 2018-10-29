@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/m-asiimwe/Fast-Food-Fast.svg?branch=ft-challenge-4)](https://travis-ci.org/m-asiimwe/fast-foods-fast)
-[![Coverage Status](https://coveralls.io/repos/github/m-asiimwe/Fast-Food-Fast/badge.svg?branch=ft-challenge-4)](https://coveralls.io/github/m-asiimwe/fast-foods-fast?branch=ft-challenge-3)
+[![Build Status](https://travis-ci.org/m-asiimwe/Fast-Food-Fast.svg?branch=ft-challenge-4)](https://travis-ci.org/m-asiimwe/Fast-Food-Fast)
+[![Coverage Status](https://coveralls.io/repos/github/m-asiimwe/Fast-Food-Fast/badge.svg?branch=ft-challenge-4)](https://coveralls.io/github/m-asiimwe/Fast-Food-Fast?branch=ft-challenge-4)
 [![Maintainability](https://api.codeclimate.com/v1/badges/fe5d0f7b2397b5cc47bf/maintainability)](https://codeclimate.com/github/m-asiimwe/Fast-Food-Fast/maintainability)
 
 # fast-food-fast
