@@ -1,0 +1,31 @@
+Post an order or Get history of orders.
+---
+tags:
+ - User places an order and can view the history of orders placed
+parameters:
+  - in: body
+    name: place order or get hsitory of orders
+    required: true
+    description: Endpoint for placing orders and returning the history of orders
+responses:
+  200:
+    description: Order successfully placed
+    schema:
+      id: post_order
+      properties:
+        content:
+          type: string
+          default:
+        item_id:
+          type: int
+          default: 1     
+  400:
+    description: One of the fields required is empty.
+  404:
+    description: Place order for item not on the menu  
+security:
+  - JWT:
+      description: takes in a jwt token
+      name: Authorization
+      in: header
+      bearerFormat: JWT  

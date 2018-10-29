@@ -1,0 +1,23 @@
+User Login.
+---
+tags:
+ - User Login
+parameters:
+  - in: body
+    name: Login
+    required: true
+    description: Endpoint to login registered user
+responses:
+  200:
+    description: User succesfully logged in
+    schema:
+      id: login
+      properties:
+        email:
+          type: string
+          default: aaa@gmail.com
+        password:
+          type: string
+          default: pas1231sf
+  400:
+    description: Attempt login with empty user fields.
