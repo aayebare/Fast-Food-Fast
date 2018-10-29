@@ -32,39 +32,33 @@
     <script>
         window.addEventListener('load', getOrders);
         var token = sessionStorage.getItem('Token');
-        console.log(token)
-    
-        function getOrders() {
-            fetch('http://127.0.0.1:5000/api/v1/orders', {
-                        headers: {
-                            'Authorization': 'Bearer ' + token,
-                            credentials: 'include'
-                        }
+        function getOrders(){
+            fetch('http://127.0.0.1:5000/api/v1/orders',{
+                headers:{'Authorization': 'Bearer '+ token,
+                credentials:'include'
                     }
-    
-                )
-                .then((response) => response.json())
-    
-            .then((data) => {
-    
+            }	
+                
+            )
+            .then((response)=> response.json())  
+            .then((data)=>{
                 let output = '<div></div>';
-    
-                data.forEach((item) => {
-    
+                
+                data.forEach((item)=>{
+                    
                     output
-                        += `
+                    +=`
     
                     <article>
                     <table>
                         <p class="date">
-                        <select id="select_id">
+                        <select id="select_id" name="selector" class="content-section" onchange="changeValue(this,${item.order_id})">
                             <option value="new" id="new"> New</option>
                             <option value="processing" id="processing"> processing</option>
                             <option value="cancelled" id="cancelled"> cancelled</option>
                             <option value="complete" id="complete"> complete</option>
                         </select>
                        
-                <button type="submit" class="button-1" onClick="editStatus(${item.order_id})">Edit status</button>  
                      </p> 
                         <tr>
                             <p>${item.date}</p>
@@ -73,40 +67,32 @@
                         </tr>
                     </table>  
                     </article>
-                    `
-
+                    `	  
                 });
-    
-                document.getElementById('items').innerHTML = output
-
+            
+                document.getElementById('items').innerHTML=output
             })
-    
+            
         }
-        function editStatus(order_id) {
-            console.log(order_id)
-            let select_id = "select_" + order_id
-            select_element = document.getElementById('select_id').value;
+    
+        function changeValue(x, order_id){
+    
             let id = order_id;
-            let url = 'http://127.0.0.1:5000/api/v1/​​orders​/s' + id
-            fetch(url, {
-                    method: 'PUT',
-                    headers: {
-                        'Accept': 'application/json, text/plain, */*',
-                        'Content-type': 'application/json',
-                        'Authorization': 'Bearer ' + token,
-                        credentials: 'include'
-                    },
-                    body: JSON.stringify({
-                        order_status: select_element
-                    })
+            let url  = 'http://127.0.0.1:5000/api/v1/​​orders​/'+ id
+            fetch(url,{
+                    method:'PUT',
+                    headers:{'Accept':'application/json, text/plain, */*',
+                        'Content-type':'application/json',
+                        'Authorization': 'Bearer '+ token,
+                credentials:'include'},
+                    body:JSON.stringify({order_status:x.value})   
                 })
-                .then((res) => res.json())
-                .then((data) => {
+                .then((res)=>res.json())
+                .then((data)=>{
+                    console.log(data)
                 })
-    
         }
-    </script>
-
+        </script>	
 
 </body>
 
