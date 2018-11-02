@@ -40,7 +40,7 @@
            
         }
         function getOrders(){
-            fetch('http://127.0.0.1:5000/api/v1/orders',{
+            fetch('https://fast-food-fast-3.herokuapp.com/api/v1/orders',{
                 headers:{'Authorization': 'Bearer '+ token,
                 credentials:'include'
                     }
@@ -85,7 +85,7 @@
         function changeValue(x, order_id){
     
             let id = order_id;
-            let url  = 'http://127.0.0.1:5000/api/v1/​​orders​/'+ id
+            let url  = 'https://fast-food-fast-3.herokuapp.com/api/v1/​​orders​/'+ id
             fetch(url,{
                     method:'PUT',
                     headers:{'Accept':'application/json, text/plain, */*',

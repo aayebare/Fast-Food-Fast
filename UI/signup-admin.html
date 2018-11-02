@@ -40,7 +40,7 @@
             let confirm_password = document.getElementById('confirm-password').value;
             let is_admin = true
             
-            fetch('http://127.0.0.1:5000/api/v1/auth/signup', {
+            fetch('https://fast-food-fast-3.herokuapp.com/api/v1/auth/signup', {
                 method:'POST',
                 headers:{'Accept':'application/json, text/plain, */*',
                 'Content-type':'application/json'
