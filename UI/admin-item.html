@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <a id="logout" href="user-login.html"><h4>Logout and Exit</h4></a> 
     <div class="container">
         <form id="addItem">
             <a href="admin-edit-items.html">
@@ -28,7 +29,13 @@
     </div>
     <script>
         document.getElementById('addItem').addEventListener( "submit", addItem);
-        var token = sessionStorage.getItem('Token')
+        document.getElementById('logout').addEventListener('click', logout);
+        var token = sessionStorage.getItem('Token');
+        function logout(){
+            alert('Logout and Exit?')
+            sessionStorage.removeItem('Token');
+           
+        }
         function addItem(e){
             e.preventDefault();
            let title = document.getElementById('title').value;

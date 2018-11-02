@@ -1,16 +1,16 @@
 body{
     background: #fafafa;
-    color: #333333;
+    color: #080808;
     margin-top: 5rem;
 	margin:0;
     padding-bottom: 0;
     font: 15px/1.5 Arial,sans-serif;
-    color: #333333;   
-    background-image: url(../images/image-11.jpg);
+    color: #080808;   
+    background-image: url(../images/fast.png);
     opacity: 1;
 }
 h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+  color: #0c0c0c;
 }
 .container{
 	width: 80%;
@@ -33,6 +33,7 @@ input,textarea {
     cursor: pointer;
     font-weight:bolder;
     border: none;
+    border-radius: 3px;
 }
 .button-2{
     border: none;
@@ -45,6 +46,7 @@ input,textarea {
     margin-right: 80px;
     margin-top: 30px;
     float: right;
+    border-radius: 3px;
 }
 .button-3{
     border: none;
@@ -57,6 +59,7 @@ input,textarea {
     margin-right: 80px;
     margin-top: 30px;
     float: right;
+    border-radius: 3px;
 }
 
 a{
@@ -78,7 +81,8 @@ article{
  	padding-bottom: 10px;
     margin-bottom: 10px;
     margin-right: 16px;
-  	border: 1px solid #b9b1b1;
+    border: 1px solid #b9b1b1;
+    border-radius: 3px;
 }
 table{
     margin-left:10px;
@@ -98,7 +102,8 @@ header .head a{
  }
  p{
      padding-left: 20px;
-     font-weight: bolder;
+     /* font-weight: bolder; */
+     font-style: italic;
  }
 a:hover{
     color: #000407;
@@ -107,7 +112,7 @@ a:hover{
 }
 .content-section{
     float: right;
-    background: #ffffff;
+    background: #f8f5f5;
     padding: 10px 10px;
     border: 1px solid #dddddd;
     border-radius: 3px;
@@ -138,27 +143,21 @@ a:hover{
   }
 
 .home-page{
-	background-image: url(../images/image-6.jpg);
+	background-image: url(../images/image-5.jpg);
     text-align: center;
-    opacity: 0.5;
+    opacity: 5;
 }
 #container-1 {
 	width:100%;
     margin: 0 auto;
 }
-.home-content h1 {
-	border-bottom: 2px solid rgb(173, 12, 12);
-	border-top:2px solid rgb(61, 13, 148);
-	color: rgb(34, 33, 33);
-	font-family: 'Lato', sans-serif;
-	font-size: 32px	;
-    }
 .home-page p {
-	color: rgb(202, 177, 177);
+    margin-top: 10px;
+	color:  #000;
 	font-family:  "Poppins",sans-serif;
 	font-size: 24px;
-	max-width: 1000px;
-	text-transform: uppercase;
+	max-width: 800px;
+	/* text-transform: uppercase; */
 	line-height: 1.5em;
 	margin: 3em auto 3em auto;
 }
@@ -170,9 +169,7 @@ a:hover{
 	font:1em Georgia;
 	list-style: none;
     padding: 0;
-    margin-right: 200px;
-    margin-left: 200px;
-	background-color: rgb(202, 177, 177);
+	background-color:none;
 	text-align: center;
 	font-family: Helvetica, Arial, sans-serif;
 }
@@ -195,11 +192,32 @@ a:hover{
 	color:#fff;
 }
 .company-banner{
-    margin-left: 400px;
-    margin-right: 400px;
-    margin-top: 50px;
-    width: auto;
-    height: auto;
-    padding: 0;
-    background-image: url(../images/image-12.jpg);
+    margin-left: 50px;
+    margin-right: 500px;
+    margin-top: 10px;
+    max-width: 200px;
+    min-height: 165px; 
+    padding: 0px;
+    background-image: url(../images/image-0.png);
+    
+}
+#logo{  
+    color: #000; 
+}
+.content-section-3{
+    float: right;
+    background: #cac4c4;
+    padding: 10px 10px;
+    border: 1px solid #3d3636;
+    border-radius: 3px;
+}
+#order{
+    font-weight: bolder;
+}
+#logout{
+    float: right;
+    text-shadow: 3px 2px rgb(158, 9, 21);
+    margin-top: 10px;
+    margin-right: 100px;
+    
 }

@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    <a id="logout" href="user-login.html"><h4>Logout and Exit</h4></a> 
     <div class="container">
         <header>
             <div class="head">
@@ -31,7 +32,13 @@
     </div>
     <script>
         window.addEventListener('load', getOrders);
+        document.getElementById('logout').addEventListener('click', logout);
         var token = sessionStorage.getItem('Token');
+        function logout(){
+            alert('Logout and Exit?')
+            sessionStorage.removeItem('Token');
+           
+        }
         function getOrders(){
             fetch('http://127.0.0.1:5000/api/v1/orders',{
                 headers:{'Authorization': 'Bearer '+ token,
@@ -52,18 +59,18 @@
                     <article>
                     <table>
                         <p class="date">
-                        <select id="select_id" name="selector" class="content-section" onchange="changeValue(this,${item.order_id})">
+                        <select id="select_id" name="selector" class="content-section-3" onchange="changeValue(this,${item.order_id})">
                             <option value="new" id="new"> New</option>
-                            <option value="processing" id="processing"> processing</option>
-                            <option value="cancelled" id="cancelled"> cancelled</option>
-                            <option value="complete" id="complete"> complete</option>
+                            <option value="processing"> processing</option>
+                            <option value="cancelled"> cancelled</option>
+                            <option value="complete"> complete</option>
                         </select>
                        
                      </p> 
                         <tr>
                             <p>${item.date}</p>
-                            <p>${item.content}</p>
-                            <p>order status: ${item.status} </p>	   
+                            <p id="order">${item.content}</p>
+                            <p id="order">order status: ${item.status} </p>	   
                         </tr>
                     </table>  
                     </article>
@@ -89,7 +96,12 @@
                 })
                 .then((res)=>res.json())
                 .then((data)=>{
-                    console.log(data)
+                    if(data.message=='order succesfully updated'){
+                    alert('status updated to '+x.value)
+                    // sessionStorage.setItem('Token', data.token);
+                    
+                    window.location='admin-receive-order.html'
+                    }
                 })
         }
         </script>	

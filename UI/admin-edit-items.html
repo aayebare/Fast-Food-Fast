@@ -6,6 +6,7 @@
 	<title>update items</title>
 </head>
 <body>
+	<a id="logout" href="user-login.html"><h4>Logout and Exit</h4></a> 
 	<div class="container">
     	<header>
         	<div class="head">
@@ -24,7 +25,13 @@
     </div>	
     <script>
     window.addEventListener('load', getMenu);
+	document.getElementById('logout').addEventListener('click', logout);
 	var token = sessionStorage.getItem('Token');
+	function logout(){
+            alert('Logout and Exit?')
+            sessionStorage.removeItem('Token');
+           
+        }
 	function getMenu(){
 		fetch('http://127.0.0.1:5000/api/v1/menu',{
 			headers:{'Authorization': 'Bearer '+ token,
@@ -49,9 +56,9 @@
                     <button type="submit" class="button-2"><a href="admin-item.html">Edit</a></button>
                     <button type="submit" class="button-3" id ><a href=#>Delete</a></button>
 					<tr>
-						<p>${item.content}</p>
+						<p id="order">${item.content}</p>
                         <p>${item.detail} </p>
-                        <p>Price: ${item.price} UGX </p>	 
+                        <p id="order">Price: ${item.price} UGX </p>	 
                     </tr>
 				</table>  
 			    </article>
